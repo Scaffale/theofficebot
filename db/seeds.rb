@@ -26,6 +26,7 @@ Dir.glob("#{Rails.root}/data/srt/*.srt").each do |file|
                      end_time: endTs, 
                      start_time: start,
                      text: currentSentence)
+    currentSentence = ''
   end
   current_filename = file.split('/')[-1]
   season = current_filename.split('E')[0].split('S')[1].to_i
@@ -64,6 +65,7 @@ Dir.glob("#{Rails.root}/data/srt/*.srt").each do |file|
                          end_time: endTs, 
                          start_time: start,
                          text: currentSentence)
+        currentSentence = ''
       end
     end
   end

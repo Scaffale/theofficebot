@@ -26,7 +26,7 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
     print "Tempo After: #{afterTime}"
     frase = query.split(' ')
     name = 0
-    lt_url = "https://breezy-wolverine-5.localtunnel.me"
+    lt_url = "https://spotty-dog-85.localtunnel.me"
 
     finded_sentences = Sentence.where(frase.map{|e| "(lower(text) LIKE '%#{e.downcase}%')"}.join(' AND ')).limit(max_results)
 
