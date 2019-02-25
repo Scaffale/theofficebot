@@ -43,4 +43,4 @@ $ bin/rails telegram:bot:poller
 - [ ] Add tests to the search.
 - [ ] Add options to the bot.
 - [ ] Add test to the option reader.
-- [ ] Add test to the time helper.
+- [x] Add test to the time helper.
