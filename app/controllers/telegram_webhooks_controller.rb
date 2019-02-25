@@ -26,7 +26,7 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
     print "Tempo After: #{afterTime}"
     frase = query.split(' ')
     name = 0
-    lt_url = "https://spotty-dog-85.localtunnel.me"
+    lt_url = "https://itchy-lion-33.localtunnel.me"
 
     finded_sentences = Sentence.where(frase.map{|e| "(lower(text) LIKE '%#{e.downcase}%')"}.join(' AND ')).limit(max_results)
 
@@ -38,8 +38,8 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
       endTs = sentence.end_time + afterTime
       name += 1
       new_name = frase.sort().join('-') + name.to_s
-      comand = "ffmpeg -ss #{start} -loglevel panic -to #{endTs} -n -i #{Rails.root}/data/srt/#{sentence.file_name.gsub '.srt', '.mp4'} -vcodec copy -copyinkf #{Rails.public_path}/gifs/#{new_name}.mp4"
-      # comand = "ffmpeg -loglevel panic -ss #{start} -strict -2 -to #{endTs} -n -i #{Rails.root}/data/srt/#{sentence.file_name.gsub '.srt', '.mp4'} #{Rails.public_path}/gifs/#{new_name}.mp4"
+      # comand = "ffmpeg -ss #{start} -loglevel panic -to #{endTs} -n -i #{Rails.root}/data/srt/#{sentence.file_name.gsub '.srt', '.mp4'} -vcodec copy -copyinkf #{Rails.public_path}/gifs/#{new_name}.mp4"
+      comand = "ffmpeg -loglevel panic -ss #{start} -strict -2 -to #{endTs} -n -i #{Rails.root}/data/srt/#{sentence.file_name.gsub '.srt', '.mp4'} #{Rails.public_path}/gifs/#{new_name}.mp4"
       print(comand)
       system(comand)
       # fork { exec(comand) }
