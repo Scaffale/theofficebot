@@ -41,6 +41,6 @@ $ bin/rails telegram:bot:poller
 ## Roadmap
 - [ ] Add tests to the seeding.
 - [ ] Add tests to the search.
-- [ ] Add options to the bot.
-- [ ] Add test to the option reader.
+- [x] Add options to the bot.
+- [x] Add test to the option reader.
 - [x] Add test to the time helper.
