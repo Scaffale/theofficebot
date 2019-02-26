@@ -7,8 +7,9 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   end
 
   def inline_query(query, _offset)
-    # query = query.first(10) # it's just an example, don't use large queries.
-    max_results = 3
+    who = @_update["inline_query"]["from"]
+    SearchQuery.create(tid: who["id"], last_name: who["last_name"], first_name: who["first_name"], username: who["username"], query: query)
+    max_results = 10
     query.strip!
     if query.blank?
       return
@@ -19,12 +20,12 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
     files_srt = Dir.glob("#{Rails.root}/data/srt/*.srt")
     beforeTime = parsed_query[:before] || 1
     afterTime = parsed_query[:after] || 2
-    print "Cerco: " + parsed_query[:sentence]
-    print "Tempo Before: #{beforeTime}"
-    print "Tempo After: #{afterTime}"
+    # print "Cerco: " + parsed_query[:sentence]
+    # print "Tempo Before: #{beforeTime}"
+    # print "Tempo After: #{afterTime}"
     frase = parsed_query[:sentence].split(' ')
     name = 0
-    lt_url = "https://neat-rat-81.localtunnel.me"
+    lt_url = "https://jolly-penguin-36.localtunnel.me"
 
     finded_sentences = Sentence.where(frase.map{|e| "(lower(text) LIKE '%#{e.downcase}%')"}.join(' AND ')).limit(max_results)
 

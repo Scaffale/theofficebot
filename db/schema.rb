@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_22_083151) do
+ActiveRecord::Schema.define(version: 2019_02_26_122053) do
+
+  create_table "search_queries", force: :cascade do |t|
+    t.string "tid"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "username"
+    t.string "query"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "sentences", force: :cascade do |t|
     t.integer "season"

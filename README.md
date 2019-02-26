@@ -44,3 +44,6 @@ $ bin/rails telegram:bot:poller
 - [x] Add options to the bot.
 - [x] Add test to the option reader.
 - [x] Add test to the time helper.
+- [ ] Add serches counter.
+- [ ] Optimize search queue.
+- [ ] Optimize space usage.
