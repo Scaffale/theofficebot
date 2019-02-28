@@ -24,16 +24,14 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
     # print "Tempo Before: #{beforeTime}"
     # print "Tempo After: #{afterTime}"
     frase = parsed_query[:sentence].split(' ')
-    name = 0
-    lt_url = "https://jolly-penguin-36.localtunnel.me"
+    lt_url = "https://average-eel-12.localtunnel.me"
 
     finded_sentences = Sentence.where(frase.map{|e| "(lower(text) LIKE '%#{e.downcase}%')"}.join(' AND ')).limit(max_results)
 
     finded_sentences.each do |sentence|
       start = sentence.start_time - beforeTime
       endTs = sentence.end_time + afterTime
-      name += 1
-      new_name = frase.sort().join('-') + "b#{parsed_query[:before].to_s}a#{parsed_query[:after].to_s}s#{sentence.season}e#{sentence.episode}" + name.to_s
+      new_name = "#{sentence.file_name.gsub('.srt', '')}-#{start}-#{endTs}"
       comand = "ffmpeg -ss #{start} -loglevel panic -n -i #{Rails.root}/data/srt/#{sentence.file_name.gsub '.srt', '.mp4'} -t #{endTs - start} -c copy -avoid_negative_ts 1 #{Rails.public_path}/gifs/#{new_name}.mp4"
       # comand = "ffmpeg -loglevel panic -ss #{start} -strict -2 -to #{endTs} -n -i #{Rails.root}/data/srt/#{sentence.file_name.gsub '.srt', '.mp4'} #{Rails.public_path}/gifs/#{new_name}.mp4"
       # print(comand)
